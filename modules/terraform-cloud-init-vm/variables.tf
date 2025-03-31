@@ -86,7 +86,13 @@ variable "vm_ciuser" {
   type        = string
 }
 
-variable "vm_storage" {
+variable "vm_storage0" {
+  description = "Location to store the VM, ie: local-zfs, Ceph_VMS"
+  type        = string
+  default = "local-zfs"
+}
+
+variable "vm_storage1" {
   description = "Location to store the VM, ie: local-zfs, Ceph_VMS"
   type        = string
   default = "local-zfs"
@@ -103,10 +109,16 @@ variable "vm_nameserver" {
   type        = string
 }
 
-variable "vm_root_size" {
+variable "vm_root_size0" {
   description = "Size in G for the root disk"
   type        = number
   default = 30
+}
+
+variable "vm_root_size1" {
+  description = "Size in G for the root disk"
+  type        = number
+  default = null
 }
 
 variable "vm_disks" {

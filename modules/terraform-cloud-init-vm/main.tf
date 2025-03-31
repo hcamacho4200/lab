@@ -30,17 +30,28 @@ resource "proxmox_vm_qemu" "cloudinit-test" {
         ide {
             ide2 {
                 cloudinit {
-                    storage = var.vm_storage
+                    storage = var.vm_storage0
                 }
             }
         }
         scsi {
             scsi0 {
                 disk {
-                    size            = var.vm_root_size
+                    size            = var.vm_root_size0
                     cache           = "writeback"
-                    storage         = var.vm_storage
+                    storage         = var.vm_storage0
                     replicate       = true
+                }
+            }
+            dynamic "scsi1" {
+                for_each = var.vm_storage1 != null ?[1] : []
+                content {
+                    disk {
+                        size            = var.vm_root_size1
+                        cache           = "writeback"
+                        storage         = var.vm_storage1
+                        replicate       = true
+                    }
                 }
             }
         }
