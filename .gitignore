@@ -1,0 +1,5 @@
+exports.sh
+infrastructure/utility/.terraform.lock.hcl
+infrastructure/utility/override_exports.sh
+infrastructure/utility/terraform.tfstate
+infrastructure/utility/.terraform/
