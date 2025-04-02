@@ -6,5 +6,7 @@ services:
     build: ./containers/web
     ports:
       - "8080:80"
+    volumes:
+      - ./volumes/html:/var/www/html
 
 

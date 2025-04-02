@@ -1,15 +1,15 @@
-FROM ubuntu:24.10
+# Use the official Apache2 image
+FROM php:8.2-apache
+VOLUME /var/www/html
 
-# Set non-interactive mode to prevent prompts during installation
-ENV DEBIAN_FRONTEND=noninteractive
+# Install additional PHP extensions and system dependencies
+RUN docker-php-ext-install mysqli pdo pdo_mysql && \
+    apt-get update && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev && \
+    docker-php-ext-configure gd --with-freetype --with-jpeg && \
+    docker-php-ext-install gd
 
-# Update, upgrade, and install packages
-RUN apt update && \
-    apt upgrade -y && \
-    apt install -y curl vim git && \
-    apt install -y apache2 && \
-    apt clean && \
-    rm -rf /var/lib/apt/lists/*
+# Set the working directory
+WORKDIR /var/www/html
 
 # Expose the HTTP port
 EXPOSE 80
