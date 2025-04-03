@@ -1,0 +1,17 @@
+networks:
+  portainer_net:
+    driver: bridge
+services:
+  portainer:
+    networks:
+      - portainer_net
+    image: docker.io/portainer/portainer-ce:lts
+    # container_name: homepage
+    environment:
+    ports:
+      - 8001:8001
+      - 9443:9443
+    volumes:
+      - /run/user/1000/podman/podman.sock:/var/run/docker.sock
+      - ./volumes/portainer_data:/data
+    restart: unless-stopped
