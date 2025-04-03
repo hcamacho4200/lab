@@ -1,8 +1,11 @@
-
 version: "3"
-
+networks:
+  phpipam_net:
+    driver: bridge
 services:
   web:
+    networks:
+      - phpipam_net
     build: ./containers/web
     ports:
       - "8080:80"
