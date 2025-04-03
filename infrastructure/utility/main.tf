@@ -17,29 +17,24 @@ module "vm_module" {
   source      = "../../modules/terraform-cloud-init-vm"
 
    for_each = {
-    util-01 = { 
-      vm_id = 1010, 
-      vm_name = "utility-01", 
-      vm_desc = "Utility VM for Running Various items", 
-      vm_target = "proxmox-1", 
-      vm_mem = 2048, 
-      vm_cores = 2, 
-      vm_mac = "02:00:00:00:10:10", 
-      vm_network_tag0 = 20,
-      vm_ipconfig0 = "ip=${var.network_prefix_0}.11/24,gw=${var.network_prefix_0}.1", 
-      vm_network_tag1 = 21,
-      vm_ipconfig1 = "ip=${var.network_prefix_1}.11/24",
-      vm_disks = [
-          { slot = 0, size = 30, storage = "local-zfs", cache = "writeback", replicate = true },
-          { slot = 0, size = 30, storage = "local-zfs", cache = "writeback", replicate = true }
-        ],
-      vm_storage0 = "local-zfs",
-      vm_root_size0 = 30,
-      vm_storage1 = "local-zfs",
-      vm_root_size1 = 50
+    util-01 = {  
+      vm_id = 1010, vm_name = "utility-01", vm_desc = "Utility VM for Running Various items", 
+      vm_target = "proxmox-1", vm_mem = 2048, vm_cores = 2, vm_mac = "02:00:00:00:10:10", 
+      vm_network_tag0 = 20, vm_ipconfig0 = "ip=${var.network_prefix_0}.11/24,gw=${var.network_prefix_0}.1", 
+      vm_network_tag1 = 21, vm_ipconfig1 = "ip=${var.network_prefix_1}.11/24",
+      vm_storage0 = "local-zfs", vm_root_size0 = 30,
+      vm_storage1 = "local-zfs", vm_root_size1 = 50
+    }
+
+    db-01 = {  
+      vm_id = 5010, vm_name = "db-01", vm_desc = "Database VM for Running Various items", 
+      vm_target = "proxmox-5", vm_mem = 2048, vm_cores = 2, vm_mac = "02:00:00:00:50:10", 
+      vm_network_tag0 = 20, vm_ipconfig0 = "ip=${var.network_prefix_0}.12/24,gw=${var.network_prefix_0}.1", 
+      vm_network_tag1 = 21, vm_ipconfig1 = "ip=${var.network_prefix_1}.12/24",
+      vm_storage0 = "local-zfs", vm_root_size0 = 30,
+      vm_storage1 = "local-zfs", vm_root_size1 = 50
     }
   }
-
 
   vm_id = each.value.vm_id
   vm_name = each.value.vm_name
