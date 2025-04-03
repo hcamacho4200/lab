@@ -3,3 +3,7 @@ infrastructure/utility/.terraform.lock.hcl
 infrastructure/utility/override_exports.sh
 infrastructure/utility/terraform.tfstate
 infrastructure/utility/.terraform/
+infrastructure/utility/terraform.tfstate.backup
+infrastructure/utility/containers/test_app
+
+infrastructure/utility/containers/phpipam/volumes/html/index.html

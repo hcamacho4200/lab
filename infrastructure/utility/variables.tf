@@ -13,11 +13,6 @@ variable "vm_ciuser" {
   type        = string
 }
 
-variable "tf_home" {
-  description = "Home directory for this location"
-  type        = string
-}
-
 variable "pm_datacenter" {
   description = "A proxmox host connected to the DC"
   type        = string
