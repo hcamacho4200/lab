@@ -7,6 +7,11 @@ services:
     networks:
       - phpipam_net
     build: ./containers/web
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN
+    stdin_open: true
+    tty: true
     ports:
       - "8080:80"
     volumes:

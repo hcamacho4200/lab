@@ -24,6 +24,9 @@ RUN docker-php-ext-install pcntl
 # Enable mod_rewrite
 RUN a2enmod rewrite
 
+# install ping
+RUN apt-get install -y iputils-ping
+
 # Set the working directory
 WORKDIR /var/www/html
 

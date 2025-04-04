@@ -6,6 +6,9 @@
     - PHPIPAM:
         href: http://utility-01.home:8080/phpipam
         description: IP Management
+    - Portainer:
+        href: https://utility-01.home:9443
+        description: Container management
     - Proxmox Production:
         href: https://proxmox-1.home:8006
         description: VM/CT Management
@@ -21,4 +24,12 @@
     - Home Page:
         href: http://utility-01.home:3000/
         description: Homepage is awesome
+    - Uptime Kuma:
+        href: http://utility-01.home:3001/dashboard
+        description: Monitoring
+
+- Lab:
+    - Siglent Scope:
+        href: http://192.168.1.213/
+        description: Scope Remote Control
 

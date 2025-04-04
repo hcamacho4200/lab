@@ -7,3 +7,7 @@ infrastructure/utility/terraform.tfstate.backup
 infrastructure/utility/containers/test_app
 
 infrastructure/utility/containers/phpipam/volumes/html/index.html
+infrastructure/utility/containers/homepage/volumes/config/logs/homepage.log
+infrastructure/utility/containers/homepage/volumes/config/custom.css
+infrastructure/utility/containers/homepage/volumes/config/custom.js
+infrastructure/utility/containers/portainer/volumes/portainer_data

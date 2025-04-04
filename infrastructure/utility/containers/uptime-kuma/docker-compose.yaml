@@ -1,0 +1,15 @@
+networks:
+  uptime-kuma_net:
+    driver: bridge
+services:
+  uptime-kuma:
+    networks:
+      - uptime-kuma_net
+    image: docker.io/louislam/uptime-kuma:1
+    environment:
+    ports:
+      - 3001:3001
+    volumes:
+      - ./volumes/uptime-kuma:/app/data
+      - /run/user/1000/podman/podman.sock:/var/run/docker.sock
+    restart: unless-stopped
