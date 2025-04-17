@@ -84,4 +84,10 @@ resource "proxmox_vm_qemu" "cloudinit-test" {
       id   = 0
       type = "socket"
     }
+
+    lifecycle {
+      ignore_changes = [ 
+        sshkeys
+       ]
+    }
 }
