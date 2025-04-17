@@ -3,6 +3,15 @@ This is my home LAB I use for testing out various items:
 - Monitoring Systems
 - K8S
 
+Some of the technologies used:
+- Unifi Networking (Dream Machine Pro, Wifi, and Switching)
+- HP G4 Z1 MINI systems (Qty 5)
+- 2.5G Networking for Replication
+- 1G Networking for Host access
+- Ceph
+- Proxmox
+- RKE
+
 Some of the items here are repurposed from content contributers:
 - Jims Garage
 
