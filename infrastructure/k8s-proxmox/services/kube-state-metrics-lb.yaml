@@ -1,0 +1,18 @@
+# kubectl apply -f kube-state-metrics-lb.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: kube-state-metrics-lb
+  namespace: kube-system  # or wherever you deployed it
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 192.168.20.202  # <-- pick from your MetalLB pool
+  selector:
+    app.kubernetes.io/instance: kube-state-metrics
+    app.kubernetes.io/name: kube-state-metrics
+  ports:
+    - name: http-metrics
+      protocol: TCP
+      port: 8080
+      targetPort: 8080

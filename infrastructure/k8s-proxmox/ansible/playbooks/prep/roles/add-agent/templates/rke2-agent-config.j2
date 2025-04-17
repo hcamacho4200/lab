@@ -1,0 +1,5 @@
+write-kubeconfig-mode: "0644"
+token: {{ hostvars['k8s-master-01.home']['token'] }}
+server: https://{{ hostvars['k8s-master-01.home']['ansible_host'] }}:9345
+node-label:
+  - "agent=true"

@@ -1,6 +1,6 @@
 networks:
   uptime-kuma_net:
-    driver: bridge
+    driver: host
 services:
   uptime-kuma:
     networks:

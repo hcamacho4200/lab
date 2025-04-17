@@ -1,0 +1,10 @@
+write-kubeconfig-mode: "0644"
+token: {{ hostvars['k8s-master-01.home']['token'] }}
+server: https://{{ hostvars['k8s-master-01.home']['ansible_host'] }}:9345
+tls-san:
+  - {{ vip }}
+  - {{ hostvars['k8s-master-01.home']['ansible_host'] }}
+  - {{ hostvars['k8s-master-02.home']['ansible_host'] }}
+  - {{ hostvars['k8s-master-03.home']['ansible_host'] }}
+node-label:
+  - server=true

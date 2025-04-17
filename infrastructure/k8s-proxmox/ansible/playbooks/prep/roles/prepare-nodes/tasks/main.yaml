@@ -1,0 +1,28 @@
+- name: Update package list
+  apt:
+    update_cache: yes  # Runs `apt-get update`
+
+- name: Upgrade all packages
+  apt:
+    upgrade: dist  # Equivalent to `apt-get dist-upgrade`
+
+- name: Clean up unnecessary packages
+  apt:
+    autoclean: yes  # Cleans cached package files
+
+- name: Enable IPv4 forwarding
+  ansible.posix.sysctl:
+    name: net.ipv4.ip_forward
+    value: "1"
+    state: present
+    reload: true
+  tags: sysctl
+
+- name: Enable IPv6 forwarding
+  ansible.posix.sysctl:
+    name: net.ipv6.conf.all.forwarding
+    value: "1"
+    state: present
+    reload: true
+  tags: sysctl
+  

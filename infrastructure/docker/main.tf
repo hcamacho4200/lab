@@ -17,20 +17,20 @@ module "vm_module" {
   source      = "../../modules/terraform-cloud-init-vm"
 
    for_each = {
-    util-01 = {  
-      vm_id = 1010, vm_name = "utility-01", vm_desc = "Utility VM for Running Various items", 
-      vm_target = "proxmox-1", vm_mem = 2048, vm_cores = 2, vm_mac = "02:00:00:00:10:10", 
-      vm_network_tag0 = 20, vm_ipconfig0 = "ip=${var.network_prefix_0}.11/24,gw=${var.network_prefix_0}.1", 
-      vm_network_tag1 = 21, vm_ipconfig1 = "ip=${var.network_prefix_1}.11/24",
+    docker-01 = {  
+      vm_id = 3104, vm_name = "docker-01", vm_desc = "Docker Host", 
+      vm_target = "proxmox-3", vm_mem = 2048, vm_cores = 2, 
+      vm_network_tag0 = 20, vm_ipconfig0 = "ip=${var.network_prefix_0}.13/24,gw=${var.network_prefix_0}.1", 
+      vm_network_tag1 = 21, vm_ipconfig1 = "ip=${var.network_prefix_1}.13/24",
       vm_storage0 = "local-zfs", vm_root_size0 = 30,
       vm_storage1 = "local-zfs", vm_root_size1 = 50
     }
 
-    db-01 = {  
-      vm_id = 5010, vm_name = "db-01", vm_desc = "Database VM for Running Various items", 
-      vm_target = "proxmox-5", vm_mem = 2048, vm_cores = 2, 
-      vm_network_tag0 = 20, vm_ipconfig0 = "ip=${var.network_prefix_0}.12/24,gw=${var.network_prefix_0}.1", 
-      vm_network_tag1 = 21, vm_ipconfig1 = "ip=${var.network_prefix_1}.12/24",
+    docker-02 = {  
+      vm_id = 4105, vm_name = "docker-02", vm_desc = "Docker Host", 
+      vm_target = "proxmox-4", vm_mem = 2048, vm_cores = 2, 
+      vm_network_tag0 = 20, vm_ipconfig0 = "ip=${var.network_prefix_0}.14/24,gw=${var.network_prefix_0}.1", 
+      vm_network_tag1 = 21, vm_ipconfig1 = "ip=${var.network_prefix_1}.14/24",
       vm_storage0 = "local-zfs", vm_root_size0 = 30,
       vm_storage1 = "local-zfs", vm_root_size1 = 50
     }
@@ -40,6 +40,7 @@ module "vm_module" {
   vm_name = each.value.vm_name
   vm_desc = each.value.vm_desc
   vm_target =  each.value.vm_target
+  # vm_mac = each.value.vm_mac
   vm_mem = each.value.vm_mem
   vm_cores = each.value.vm_cores
   vm_network_tag0 = each.value.vm_network_tag0
