@@ -3,6 +3,9 @@
 # https://gethomepage.dev/configs/services/
 
 - Infrastructure:
+    - Longhorn:
+        href: http://longhorn.home:80
+        description: Longhorn UI
     - PHPIPAM:
         href: http://utility-01.home:8080/phpipam
         description: IP Management
@@ -14,6 +17,9 @@
         description: Container management
     - Proxmox Production:
         href: https://proxmox-1.home:8006
+        description: VM/CT Management
+    - Proxmox Production Repl:
+        href: https://proxmox-1-repl.home:8006
         description: VM/CT Management
     - Prometheus:
         href: http://utility-01.home:9090
@@ -33,6 +39,20 @@
     - Home Page:
         href: http://utility-01.home:3000/
         description: Homepage is awesome
+    - Home Assistant:
+        href: http://homeassistant-01.home:8123/
+        description: Home Assistant Administration
+    - Home Assistant Border Router UI:
+        href: http://homeassistant-01.home:80803/
+        description: Home Assistant Border Router UI
+    - SMLight SLZB-06-ZIGBEE:
+        href: http://192.168.20.201:80
+        description: Zigbee Ethernet
+
+    - SMLight SLZB-06-MATTER:
+        href: http://192.168.20.228:80
+        description: Matter Ethernet
+
     - Uptime Kuma:
         href: http://utility-01.home:3001/dashboard
         description: Monitoring
