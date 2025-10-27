@@ -11,3 +11,12 @@ infrastructure/utility/containers/homepage/volumes/config/logs/homepage.log
 infrastructure/utility/containers/homepage/volumes/config/custom.css
 infrastructure/utility/containers/homepage/volumes/config/custom.js
 infrastructure/utility/containers/portainer/volumes/portainer_data
+venv/
+infrastructure/utility/containers/uptime-kuma/volumes/uptime-kuma/
+/infrastructure/docker/.terraform
+prometheus/
+node_exporter/
+infrastructure/k8s-proxmox/.terraform
+node_exporter-1.9.1.linux-amd64.tar.gz
+**/.terraform.lock.hcl
+**/terraform.tfstate*

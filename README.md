@@ -11,6 +11,20 @@ Some of the technologies used:
 - Ceph
 - Proxmox
 - RKE
+- ZFS
+
+Various Tools deployed
+- Ansible
+- Docker
+- Grafana
+- Homepage
+- MySQL
+- PHPIPAM
+- PiHole
+- Portainer
+- Prometheus
+- Rancher
+- Uptime Kuma
 
 Some of the items here are repurposed from content contributers:
 - Jims Garage

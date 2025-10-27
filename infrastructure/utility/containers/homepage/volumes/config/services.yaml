@@ -31,11 +31,13 @@
         href: https://192.168.1.1
         description: Network Management
     
-
 - Utility:
     - Grafana:
         href: http://utility-01.home:3002/
         description: Grafana
+    - HP Printer (Office):
+        href: https://192.168.1.221/
+        description: HP Printer Configuration
     - Home Page:
         href: http://utility-01.home:3000/
         description: Homepage is awesome
@@ -43,16 +45,14 @@
         href: http://homeassistant-01.home:8123/
         description: Home Assistant Administration
     - Home Assistant Border Router UI:
-        href: http://homeassistant-01.home:80803/
+        href: http://homeassistant-01.home:8080/
         description: Home Assistant Border Router UI
     - SMLight SLZB-06-ZIGBEE:
         href: http://192.168.20.201:80
         description: Zigbee Ethernet
-
     - SMLight SLZB-06-MATTER:
         href: http://192.168.20.228:80
         description: Matter Ethernet
-
     - Uptime Kuma:
         href: http://utility-01.home:3001/dashboard
         description: Monitoring
