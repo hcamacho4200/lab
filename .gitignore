@@ -20,3 +20,5 @@ infrastructure/k8s-proxmox/.terraform
 node_exporter-1.9.1.linux-amd64.tar.gz
 **/.terraform.lock.hcl
 **/terraform.tfstate*
+infrastructure/utility/containers/uptime-kuma/push_scripts/.venv/*
+**/*.pyc
