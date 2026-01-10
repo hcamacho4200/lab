@@ -51,7 +51,7 @@
         href: http://192.168.20.201:80
         description: Zigbee Ethernet
     - SMLight SLZB-06-MATTER:
-        href: http://192.168.20.228:80
+        href: http://192.168.20.226:80
         description: Matter Ethernet
     - Uptime Kuma:
         href: http://utility-01.home:3001/dashboard
