@@ -1,0 +1,18 @@
+services:
+  backvault:
+    image: docker.io/mvflc/backvault:latest
+    container_name: backvault
+    restart: unless-stopped
+    environment:
+      BW_SERVER: "https://vault.bitwarden.com/"
+      BACKUP_ENCRYPTION_MODE: "raw" # Use 'bitwarden' for the default format
+      BACKUP_INTERVAL_HOURS: 12
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      PUID: 1000
+      PGID: 1000
+      TZ: America/Chicago # Set to your timezone according to this list https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+    volumes:
+      - ./backups:/app/backups
+      - ./db:/app/db
+    ports:
+      - "8092:8080"

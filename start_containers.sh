@@ -15,3 +15,19 @@ podman-compose up -d
 cd ~/lab/infrastructure/utility/containers/uptime-kuma
 podman-compose build
 podman-compose up -d
+
+cd ~/lab/infrastructure/utility/containers/beszel
+podman-compose build
+podman-compose up -d
+
+cd ~/lab/infrastructure/utility/containers/beszel-agent
+podman-compose build
+podman-compose up -d
+
+cd ~/lab/infrastructure/utility/containers/dozzel
+podman-compose build
+podman-compose up -d
+
+cd ~/lab/infrastructure/utility/containers/backvault
+podman-compose build
+podman-compose up -d

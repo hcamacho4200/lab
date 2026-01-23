@@ -7,6 +7,7 @@ from util import kuma_push
 
 def main(proxmox_host: str, kuma_push_url: str):
     """Monitoring the number of snapshots for each VM, and then reporting if there are snaps that are present
+    The point being to catch hanging or stale VM snapshots
     - get the node to scan ie: proxmox-1.home
     - get the vms from the qemu api
     - enumerate through each of the VMIDs looking for a snapshot count > 1

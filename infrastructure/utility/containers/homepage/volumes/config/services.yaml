@@ -32,6 +32,12 @@
         description: Network Management
     
 - Utility:
+    - Beszel:
+        href: http://utility-01.home:8090/
+        description: Beszel Monitoring System
+    - Dozzel:
+        href: http://utility-01.home:8091/
+        description: Dozzel Container logs
     - Grafana:
         href: http://utility-01.home:3002/
         description: Grafana
@@ -44,9 +50,15 @@
     - Home Assistant:
         href: http://homeassistant-01.home:8123/
         description: Home Assistant Administration
+    - Home Assistant2:
+        href: http://homeassistant-02.home:8123/
+        description: Home Assistant Administration (MA2)
     - Home Assistant Border Router UI:
         href: http://homeassistant-01.home:8080/
         description: Home Assistant Border Router UI
+    - Music Assistant:
+        href: http://homeassistant-01.home:8123/d5369777_music_assistant_beta/ingress
+        description: Music Assistant
     - SMLight SLZB-06-ZIGBEE:
         href: http://192.168.20.201:80
         description: Zigbee Ethernet
