@@ -1,0 +1,16 @@
+- name: Proxmox baseline configuration
+  hosts: proxmox_cluster
+  become: true
+
+  roles:
+    - proxmox_repos
+    - proxmox_validate
+    - zfs-auto-snapshot
+    - pve_cluster_backups
+
+- name: Linux Server Processing
+  hosts: linux_servers
+  become: true
+
+  roles:
+    - linux_patch

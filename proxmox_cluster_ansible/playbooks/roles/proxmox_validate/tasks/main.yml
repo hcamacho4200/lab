@@ -1,0 +1,57 @@
+- name: Check no-subscription repo exists
+  stat:
+    path: /etc/apt/sources.list.d/pve-no-subscription.list
+  register: no_subscription_repo_file
+  tags: validate
+
+- name: Fail if repo missing
+  fail:
+    msg: "No-subscription repo missing!"
+  when: not no_subscription_repo_file.stat.exists
+  tags: validate
+
+- name: Check enterprise repo exists
+  stat:
+    path: /etc/apt/sources.list.d/pve-enterprise.lis
+  register: enterprise_repo_file
+  tags: validate
+
+- name: Fail if repo exists
+  fail:
+    msg: "Enterprise Repo Exists"
+  when: enterprise_repo_file.stat.exists
+  tags: validate
+
+- name: Check no-subscription ceph repo exists
+  stat:
+    path: /etc/apt/sources.list.d/ceph-no-subscription.list
+  register: ceph_no_subscription_repo_file
+  tags: validate
+
+- name: Fail if repo missing
+  fail:
+    msg: "Ceph No-subscription repo missing!"
+  when: not ceph_no_subscription_repo_file.stat.exists
+  tags: validate
+
+- name: Check enterprise ceph repo exists
+  stat:
+    path: /etc/apt/sources.list.d/ceph-enterprise.lis
+  register: ceph_enterprise_repo_file
+  tags: validate
+
+- name: Fail if repo exists
+  fail:
+    msg: "Enterprise Repo Exists"
+  when: ceph_enterprise_repo_file.stat.exists
+  tags: validate
+
+# make sure zfs-auto-snapshot is installed
+- name: Gather installed package facts
+  package_facts:
+    manager: apt
+
+- name: Check if zfs-auto-snapshot is installed
+  fail:
+    msg: "zfs-auto-snapshot is installed"
+  when: "'zfs-auto-snapshot' not in ansible_facts.packages"

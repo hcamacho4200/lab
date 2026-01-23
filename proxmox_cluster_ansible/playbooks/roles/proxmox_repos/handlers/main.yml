@@ -1,0 +1,5 @@
+# handlers/main.yml
+- name: Restart pveproxy
+  systemd:
+    name: pveproxy
+    state: restarted

@@ -1,0 +1,35 @@
+# make sure /var/lib/vz/cluster_backups exists
+- name: Ensure directory exists
+  file:
+    path: /var/lib/vz/cluster_backups
+    state: directory
+
+# make sure cron job is in place to run vzdump for cluster backups in /etc/cron.d/pve-backup
+- name: Install pve-backup cron job
+  copy:
+    dest: /etc/cron.d/pve-backup
+    owner: root
+    group: root
+    mode: '0755'
+    content: |
+      0 3 * * * root tar czf /var/lib/vz/cluster_backups/etc-pve-backup-$(date +\%F).tar.gz -C /etc pve
+
+
+- name: Delete offending pve-backup cron job
+  ansible.builtin.file:
+    path: /etc/cron.daily/pve-backup
+    state: absent
+
+# make sure cron job is in place to run cluster backup pruning
+- name: Install cluster-backup prune cron job
+  copy:
+    dest: /etc/cron.d/pve-cluster-prune
+    owner: root
+    group: root
+    mode: '0755'
+    content: |
+      0 4 * * * root find /var/lib/vz/cluster_backups -maxdepth 1 -type f -printf '%T@ %p\n' \
+        | sort -nr \
+        | tail -n +{{ cluster_backup_keep_count }} \
+        | cut -d' ' -f2- \
+        | xargs -r rm --

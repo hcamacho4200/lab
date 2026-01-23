@@ -1,0 +1,26 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Upgrade all packages
+  apt:
+    upgrade: dist
+  register: upgrade_result
+
+- name: Autoremove unused packages
+  apt:
+    autoremove: yes
+  when: patch_autoremove
+
+- name: Check if reboot is required
+  stat:
+    path: /var/run/reboot-required
+  register: reboot_required
+
+- name: Reboot if required
+  include_tasks: reboot.yml
+  when:
+    - patch_reboot
+    - reboot_required.stat.exists

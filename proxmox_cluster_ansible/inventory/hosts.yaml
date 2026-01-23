@@ -1,0 +1,36 @@
+all:
+  children:
+    proxmox_cluster:
+      vars:
+        proxmox_release: bookworm
+        proxmox_admin_user: hcamacho
+        cluster_backup_keep_count: 90
+      hosts:
+        proxmox-1:
+          cluster: true
+          nas: false
+        proxmox-2:
+          cluster: true
+          nas: false
+        proxmox-3:
+          cluster: true
+          nas: false
+        proxmox-4:
+          cluster: true
+          nas: false
+        proxmox-6:
+          cluster: true
+          nas: false
+        proxmox-7:
+          cluster: true
+          nas: true
+    linux_servers:
+      vars:
+        ansible_user: ubuntu
+        ansible_become: true
+        ansible_become_method: sudo
+      hosts:
+        utility-01:
+        db01:
+        plex-01:
+
