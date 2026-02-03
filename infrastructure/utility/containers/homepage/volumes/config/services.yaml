@@ -2,15 +2,26 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/configs/services/
 
+- Applications (Proxy):
+    - Git Lab:
+        href: http://gitlab.home/
+        description: Git Lab Server
+    - Home Assistant:
+        href: http://homeassistant.home/
+        description: Home Assistant Administration
+    - Music Assistant:
+        href: http://homeassistant.home/d5369777_music_assistant_beta/ingress
+        description: Music Assistant
+    - Paperless:
+        href: http://paperless.home
+        description: Document Management System
+    - Plex:
+        href: http://plex-01.home:32400/web
+        description: Media Server
+
 - Infrastructure:
-    - Longhorn:
-        href: http://longhorn.home:80
-        description: Longhorn UI
     - PHPIPAM:
         href: http://utility-01.home:8080/phpipam
-        description: IP Management
-    - Pihole:
-        href: https://docker-01.home/admin
         description: IP Management
     - Portainer:
         href: https://utility-01.home:9443
@@ -27,6 +38,9 @@
     - QNAP:
         href: https://192.168.1.229
         description: QNAP
+    - Traefik Dashboard:
+        href: https://proxy-01.home/
+        description: Traefik Dashboard
     - Unifi:
         href: https://192.168.1.1
         description: Network Management
@@ -35,8 +49,14 @@
     - Beszel:
         href: http://utility-01.home:8090/
         description: Beszel Monitoring System
-    - Dozzel:
+    - Dozzel (Utility-01):
         href: http://utility-01.home:8091/
+        description: Dozzel Container logs
+    - Dozzel (Docker-03):
+        href: http://docker-03.home:8091/
+        description: Dozzel Container logs
+    - Dozzel (Proxy-01):
+        href: http://proxy-01.home:8091/
         description: Dozzel Container logs
     - Grafana:
         href: http://utility-01.home:3002/
@@ -68,9 +88,16 @@
     - Uptime Kuma:
         href: http://utility-01.home:3001/dashboard
         description: Monitoring
-
+    - Whoami:
+        href: https://whoami.proxy-01.home/
+        description: Whoami Test Service
 - Lab:
     - Siglent Scope:
         href: http://192.168.1.213/
         description: Scope Remote Control
+- Non Proxy Locations:
+    - Paperless:
+        href: http://docker-03.home:8000
+        description: Document Management System
+
 
