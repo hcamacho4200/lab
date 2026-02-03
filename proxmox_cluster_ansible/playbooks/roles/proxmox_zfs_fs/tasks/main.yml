@@ -1,0 +1,26 @@
+- name: Ensure NAS dataset exists
+  community.general.zfs:
+    name: data_root/NAS
+    state: present
+    extra_zfs_properties:
+      compression: zstd
+      atime: off
+  when: inventory_hostname == "proxmox-7"
+
+- name: Ensure PROXMOX dataset exists
+  community.general.zfs:
+    name: data_root/PROXMOX
+    state: present
+    extra_zfs_properties:
+      compression: zstd
+      atime: off
+  when: inventory_hostname == "proxmox-7"
+
+- name: Ensure PROXMOX_VMS dataset exists
+  community.general.zfs:
+    name: data_root/PROXMOX_VMS
+    state: present
+    extra_zfs_properties:
+      compression: zstd
+      atime: off
+  when: inventory_hostname == "proxmox-7"

@@ -1,0 +1,63 @@
+- name: Install zfs-auto-snapshot hourly cron job (NAS)
+  copy:
+    dest: /etc/cron.hourly/zfs-auto-snapshot-nas
+    owner: root
+    group: root
+    mode: '0755'
+    content: |
+      #!/bin/sh
+
+      # Only call zfs-auto-snapshot if it's available
+      which zfs-auto-snapshot > /dev/null || exit 0
+
+      zfs-auto-snapshot --quiet --syslog --label=hourly --keep=24 data_root/NAS
+      zfs-auto-snapshot --quiet --syslog --label=hourly --keep=24 data_root/PROXMOX
+      zfs-auto-snapshot --quiet --syslog --label=hourly --keep=24 data_root/PROXMOX_VMS
+  when: nas | default(false) | bool
+
+- name: Install zfs-auto-snapshot daily cron job (NAS)
+  copy:
+    dest: /etc/cron.daily/zfs-auto-snapshot-nas
+    owner: root
+    group: root
+    mode: '0755'
+    content: |
+      #!/bin/sh
+
+      # Only call zfs-auto-snapshot if it's available
+      which zfs-auto-snapshot > /dev/null || exit 0
+
+      zfs-auto-snapshot --quiet --syslog --label=daily --keep=5 data_root/NAS
+      zfs-auto-snapshot --quiet --syslog --label=daily --keep=5 data_root/PROXMOX
+      zfs-auto-snapshot --quiet --syslog --label=daily --keep=5 data_root/PROXMOX_VMS
+  when: nas | default(false) | bool
+
+- name: Install zfs-auto-snapshot weekly cron job (NAS)
+  copy:
+    dest: /etc/cron.weekly/zfs-auto-snapshot-nas
+    owner: root
+    group: root
+    mode: '0755'
+    content: |
+      #!/bin/sh
+
+      # Only call zfs-auto-snapshot if it's available
+      which zfs-auto-snapshot > /dev/null || exit 0
+
+      zfs-auto-snapshot --quiet --syslog --label=weekly --keep=5 data_root/NAS
+  when: nas | default(false) | bool
+
+- name: Install zfs-auto-snapshot monthly cron job (NAS)
+  copy:
+    dest: /etc/cron.monthly/zfs-auto-snapshot-nas
+    owner: root
+    group: root
+    mode: '0755'
+    content: |
+      #!/bin/sh
+
+      # Only call zfs-auto-snapshot if it's available
+      which zfs-auto-snapshot > /dev/null || exit 0
+
+      zfs-auto-snapshot --quiet --syslog --label=monthly --keep=12 data_root/NAS
+  when: nas | default(false) | bool

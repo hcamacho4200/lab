@@ -1,0 +1,69 @@
+- name: Install zfs-auto-snapshot hourly cron job
+  copy:
+    dest: /etc/cron.hourly/zfs-auto-snapshot
+    owner: root
+    group: root
+    mode: '0755'
+    content: |
+      #!/bin/sh
+
+      # Only call zfs-auto-snapshot if it's available
+      which zfs-auto-snapshot > /dev/null || exit 0
+
+      exec zfs-auto-snapshot --quiet --syslog --label=hourly --keep=24 rpool
+  when: zfs_auto_snapshot | default(false) | bool
+
+- name: Install zfs-auto-snapshot daily cron job
+  copy:
+    dest: /etc/cron.daily/zfs-auto-snapshot
+    owner: root
+    group: root
+    mode: '0755'
+    content: |
+      #!/bin/sh
+
+      # Only call zfs-auto-snapshot if it's available
+      which zfs-auto-snapshot > /dev/null || exit 0
+
+      exec zfs-auto-snapshot --quiet --syslog --label=daily --keep=31 rpool
+  when: zfs_auto_snapshot | default(false) | bool
+
+- name: Install zfs-auto-snapshot weekly cron job
+  copy:
+    dest: /etc/cron.weekly/zfs-auto-snapshot
+    owner: root
+    group: root
+    mode: '0755'
+    content: |
+      #!/bin/sh
+
+      # Only call zfs-auto-snapshot if it's available
+      which zfs-auto-snapshot > /dev/null || exit 0
+
+      exec zfs-auto-snapshot --quiet --syslog --label=weekly --keep=8 rpool
+  when: zfs_auto_snapshot | default(false) | bool
+
+- name: Install zfs-auto-snapshot monthly cron job
+  copy:
+    dest: /etc/cron.monthly/zfs-auto-snapshot
+    owner: root
+    group: root
+    mode: '0755'
+    content: |
+      #!/bin/sh
+
+      # Only call zfs-auto-snapshot if it's available
+      which zfs-auto-snapshot > /dev/null || exit 0
+
+      exec zfs-auto-snapshot --quiet --syslog --label=monthly --keep=12 rpool
+  when: zfs_auto_snapshot | default(false) | bool
+  
+- name: Install zfs-auto-snapshot frequent cron job
+  copy:
+    dest: /etc/cron.d/zfs-auto-snapshot
+    owner: root
+    group: root
+    mode: '0755'
+    content: |
+      */10 * * * * root /usr/sbin/zfs-auto-snapshot --quiet --syslog --label=frequent --keep=6 //
+  when: zfs_auto_snapshot | default(false) | bool

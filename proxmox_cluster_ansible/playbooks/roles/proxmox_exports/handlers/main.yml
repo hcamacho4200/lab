@@ -1,0 +1,7 @@
+- name: Reload NFS exports
+  command: exportfs -a
+
+- name: Reload SMB
+  service:
+    name: smbd
+    state: restarted

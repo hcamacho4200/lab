@@ -1,0 +1,62 @@
+- name: NFS Exports for Proxmox-7
+  copy:
+    dest: /etc/exports
+    owner: root
+    group: root
+    mode: '0644'
+    content: |
+      # /etc/exports file for NFS shares (managed by Ansible)
+
+      /data_root/PROXMOX 192.168.200.0/24(rw,no_subtree_check,no_root_squash)
+      /data_root/PROXMOX_VMS 192.168.200.0/24(rw,no_subtree_check,no_root_squash)
+      /data_root/NAS/videos 192.168.20.0/24(ro,sync,no_subtree_check)
+
+  notify: Reload NFS exports
+  when: inventory_hostname == "proxmox-7"
+
+- name: SMB Share for Proxmox-7
+  copy:
+    dest: /etc/samba/smb.conf
+    owner: root
+    group: root
+    mode: '0644'
+    content: |
+      server role = standalone server
+      obey pam restrictions = yes
+      unix password sync = yes
+      passwd program = /usr/bin/passwd %u
+      passwd chat = *Enter\snew\s*\spassword:* %n\n *Retype\snew\s*\spassword:* %n\n *password\supdated\ssuccessfully* .
+      pam password change = yes
+      map to guest = bad user
+
+      [music]
+        path = /data_root/NAS/MP3
+        browseable = yes
+        read only = yes
+        guest ok = yes
+        public = yes
+        force user = nobody
+      [pictures]
+        path = /data_root/NAS/pictures
+        browseable = yes
+        read only = yes
+        guest ok = yes 
+        public = yes 
+        force user = nobody
+      [data_root]
+        path = /data_root
+        browseable = yes
+        read only = no
+        public = yes
+        valid users = hcamacho
+        admin users = hcamacho 
+      [videos]
+        path = /data_root/NAS/videos 
+        browseable = yes
+        read only = yes 
+        guest ok = yes
+        public = yes
+        force user = nobody
+
+  notify: Reload SMB
+  when: inventory_hostname == "proxmox-7"

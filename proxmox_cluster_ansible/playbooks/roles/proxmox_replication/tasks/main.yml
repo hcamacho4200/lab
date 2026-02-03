@@ -1,0 +1,20 @@
+- name: Configure Syncoid Replication
+  copy:
+    dest: /etc/cron.daily/syncoid
+    owner: root
+    group: root
+    mode: '0755'
+    content: |
+      #!/bin/sh
+
+      touch /var/log/syncoid.log
+      echo "Starting Syncoid Replication: $(date)" >> /var/log/syncoid.log
+
+      /usr/local/bin/syncoid root@proxmox-7:data_root/NAS rpool/REPLICATION/NAS --delete-target-snapshots 2>&1 | tee -a /var/log/syncoid.log
+      /usr/local/bin/syncoid root@proxmox-7:data_root/PROXMOX rpool/REPLICATION/PROXMOX --delete-target-snapshots 2>&1 | tee -a /var/log/syncoid.log
+      /usr/local/bin/syncoid root@proxmox-7:data_root/PROXMOX_VMS rpool/REPLICATION/PROXMOX_VMS --delete-target-snapshots 2>&1 | tee -a /var/log/syncoid.log
+      /usr/local/bin/syncoid root@proxmox-1:rpool/var-lib-vz rpool/REPLICATION/var-lid-vz --delete-target-snapshots 2>&1 | tee -a /var/log/syncoid.log
+
+      exit 1
+
+  when: replication_destination | default(false) | bool

@@ -1,0 +1,6 @@
+- name: Migrate PROXY-01 to preferred host
+  vars:
+    vmid: 101                # VMID of the VM
+    preferred_node: proxmox-3 # Node you want the VM to run on
+  command: ha-manager migrate {{ vmid }} {{ preferred_node }}
+  when: inventory_hostname == preferred_node

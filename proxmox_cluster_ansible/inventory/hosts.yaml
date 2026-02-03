@@ -9,21 +9,32 @@ all:
         proxmox-1:
           cluster: true
           nas: false
+          zfs_auto_snapshot: true
         proxmox-2:
           cluster: true
           nas: false
+          zfs_auto_snapshot: true
         proxmox-3:
           cluster: true
           nas: false
+          zfs_auto_snapshot: true
         proxmox-4:
           cluster: true
           nas: false
+          zfs_auto_snapshot: true
         proxmox-6:
           cluster: true
           nas: false
+          zfs_auto_snapshot: true
         proxmox-7:
           cluster: true
           nas: true
+          zfs_auto_snapshot: true
+        proxmox-8:
+          cluster: true
+          nas: false
+          zfs_auto_snapshot: false
+          replication_destination: true
     linux_servers:
       vars:
         ansible_user: ubuntu
@@ -32,5 +43,9 @@ all:
       hosts:
         utility-01:
         db01:
+        docker-03:
+          docker: true
         plex-01:
+        proxy-01:
+          docker: true
 

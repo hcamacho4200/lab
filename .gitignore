@@ -22,3 +22,7 @@ node_exporter-1.9.1.linux-amd64.tar.gz
 **/terraform.tfstate*
 infrastructure/utility/containers/uptime-kuma/push_scripts/.venv/*
 **/*.pyc
+infrastructure/utility/containers/backvault/backups/
+infrastructure/utility/containers/backvault/db/
+infrastructure/utility/containers/beszel/beszel_data/
+

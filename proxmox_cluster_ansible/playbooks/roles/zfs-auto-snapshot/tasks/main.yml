@@ -11,58 +11,8 @@
     update_cache: yes
     cache_valid_time: 3600
 
-- name: Install zfs-auto-snapshot daily cron job
-  copy:
-    dest: /etc/cron.daily/zfs-auto-snapshot
-    owner: root
-    group: root
-    mode: '0755'
-    content: |
-      #!/bin/sh
+- name: Configure ZFS auto snapshots (PROXMOX)
+  ansible.builtin.import_tasks: proxmox.yml
 
-      # Only call zfs-auto-snapshot if it's available
-      which zfs-auto-snapshot > /dev/null || exit 0
-
-      exec zfs-auto-snapshot --quiet --syslog --label=daily --keep=31 /
-
-- name: Install zfs-auto-snapshot hourly cron job
-  copy:
-    dest: /etc/cron.hourly/zfs-auto-snapshot
-    owner: root
-    group: root
-    mode: '0755'
-    content: |
-      #!/bin/sh
-
-      # Only call zfs-auto-snapshot if it's available
-      which zfs-auto-snapshot > /dev/null || exit 0
-
-      exec zfs-auto-snapshot --quiet --syslog --label=hourly --keep=24 /
-
-- name: Install zfs-auto-snapshot weekly cron job
-  copy:
-    dest: /etc/cron.weekly/zfs-auto-snapshot
-    owner: root
-    group: root
-    mode: '0755'
-    content: |
-      #!/bin/sh
-
-      # Only call zfs-auto-snapshot if it's available
-      which zfs-auto-snapshot > /dev/null || exit 0
-
-      exec zfs-auto-snapshot --quiet --syslog --label=weekly --keep=8 // 
-
-- name: Install zfs-auto-snapshot monthly cron job
-  copy:
-    dest: /etc/cron.monthly/zfs-auto-snapshot
-    owner: root
-    group: root
-    mode: '0755'
-    content: |
-      #!/bin/sh
-
-      # Only call zfs-auto-snapshot if it's available
-      which zfs-auto-snapshot > /dev/null || exit 0
-
-      exec zfs-auto-snapshot --quiet --syslog --label=monthly --keep=12 //  
+- name: Configure ZFS auto snapshots (NAS)
+  ansible.builtin.import_tasks: nas.yml

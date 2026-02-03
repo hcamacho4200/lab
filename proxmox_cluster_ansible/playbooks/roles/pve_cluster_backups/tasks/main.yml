@@ -15,10 +15,10 @@
       0 3 * * * root tar czf /var/lib/vz/cluster_backups/etc-pve-backup-$(date +\%F).tar.gz -C /etc pve
 
 
-- name: Delete offending pve-backup cron job
-  ansible.builtin.file:
-    path: /etc/cron.daily/pve-backup
-    state: absent
+# - name: Delete offending pve-backup cron job
+#   ansible.builtin.file:
+#     path: /etc/cron.d/zfs-auto-snapshot
+#     state: absent
 
 # make sure cron job is in place to run cluster backup pruning
 - name: Install cluster-backup prune cron job
@@ -28,8 +28,4 @@
     group: root
     mode: '0755'
     content: |
-      0 4 * * * root find /var/lib/vz/cluster_backups -maxdepth 1 -type f -printf '%T@ %p\n' \
-        | sort -nr \
-        | tail -n +{{ cluster_backup_keep_count }} \
-        | cut -d' ' -f2- \
-        | xargs -r rm --
+      0 4 * * * root find /var/lib/vz/cluster_backups -maxdepth 1 -type f -printf '\%T@ \%p\n' | sort -nr | tail -n +{{ cluster_backup_keep_count }} | cut -d' ' -f2- | xargs -r rm --

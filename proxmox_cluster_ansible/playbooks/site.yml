@@ -4,13 +4,20 @@
 
   roles:
     - proxmox_repos
-    - proxmox_validate
     - zfs-auto-snapshot
     - pve_cluster_backups
-
+    - proxmox_zfs_fs
+    - proxmox_exports
+    - proxmox_validate
+    - proxmox_preferred_hosts
+    - proxmox_replication
+    - proxmox_root_shell
+    
 - name: Linux Server Processing
   hosts: linux_servers
   become: true
 
   roles:
     - linux_patch
+    - linux_standard_tasks
+
