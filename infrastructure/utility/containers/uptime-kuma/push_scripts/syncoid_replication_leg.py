@@ -3,8 +3,6 @@ import subprocess
 import time
 
 
-test
-
 def main(destination_host: str = 'proxmox-8'):
     """Main Entry Point
     The main idea here is to see how far replication has lagged to the destination host.  We will consider the following features:
