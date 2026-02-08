@@ -45,6 +45,7 @@
       which zfs-auto-snapshot > /dev/null || exit 0
 
       zfs-auto-snapshot --quiet --syslog --label=weekly --keep=5 data_root/NAS
+      zfs-auto-snapshot --quiet --syslog --label=weekly --keep=5 data_root/PROXMOX
   when: nas | default(false) | bool
 
 - name: Install zfs-auto-snapshot monthly cron job (NAS)
@@ -60,4 +61,5 @@
       which zfs-auto-snapshot > /dev/null || exit 0
 
       zfs-auto-snapshot --quiet --syslog --label=monthly --keep=12 data_root/NAS
+      zfs-auto-snapshot --quiet --syslog --label=monthly --keep=1 data_root/PROXMOX
   when: nas | default(false) | bool
