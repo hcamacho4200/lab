@@ -41,11 +41,14 @@ all:
         ansible_become: true
         ansible_become_method: sudo
       hosts:
-        utility-01:
+        collector:
         db01:
         docker-03:
           docker: true
         plex-01:
         proxy-01:
           docker: true
+        utility-01:
+
+
 
