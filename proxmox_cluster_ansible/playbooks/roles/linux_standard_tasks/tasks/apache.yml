@@ -1,0 +1,7 @@
+---
+- name: Install apache2-utils
+  ansible.builtin.apt:
+    name: apache2-utils
+    state: present
+    update_cache: true
+  when: inventory_hostname == 'proxy-01'

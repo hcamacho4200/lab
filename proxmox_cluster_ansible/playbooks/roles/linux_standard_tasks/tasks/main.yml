@@ -1,35 +1,12 @@
 ---
-- name: Install QEMU guest agent
-  ansible.builtin.package:
-    name: qemu-guest-agent
-    state: present
+- name: Configure QEMU Guest
+  ansible.builtin.import_tasks: qemu.yml
 
-- name: Enable and start QEMU guest agent
-  ansible.builtin.service:
-    name: qemu-guest-agent
-    enabled: true
-    state: started
+- name: Docker
+  ansible.builtin.import_tasks: docker.yml
 
-- name: Install Docker
-  ansible.builtin.apt:
-    name:
-      - docker.io
-      - docker-compose
-    state: present
-    update_cache: true
-  when: docker | default(false) | bool
+- name: Apache2 utils
+  ansible.builtin.import_tasks: apache.yml
 
-- name: Ensure ubuntu user is in docker group
-  become: true
-  user:
-    name: ubuntu
-    groups: docker
-    append: true
-  when: docker | default(false) | bool
-
-- name: Install apache2-utils
-  ansible.builtin.apt:
-    name: apache2-utils
-    state: present
-    update_cache: true
-  when: inventory_hostname == 'proxy-01'
+- name: SSHD Configuration
+  ansible.builtin.import_tasks: sshd.yml
