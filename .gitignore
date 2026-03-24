@@ -26,3 +26,6 @@ infrastructure/utility/containers/backvault/backups/
 infrastructure/utility/containers/backvault/db/
 infrastructure/utility/containers/beszel/beszel_data/
 
+infrastructure/utility/containers/pihole/docker-compose.yaml
+infrastructure/utility/containers/beszel-agent/docker-compose.yml
+infrastructure/utility/containers/beszel-agent/beszel_agent_data/fingerprint

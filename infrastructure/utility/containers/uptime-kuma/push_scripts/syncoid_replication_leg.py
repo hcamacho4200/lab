@@ -43,11 +43,11 @@ def compute_replication_leg(destination_host: str, replication_leg: dict):
     dest_snaps = get_snaps(destination_host, dest_dataset)
     print(f"Dest Snapshots: {dest_snaps}")
 
-    source_written = get_written(source_host, source_snaps[0]['name']) if source_snaps else None
+    matching_status, matching_snaps = determine_matching_snaps(source_snaps, dest_snaps)
+
+    source_written = get_written(source_host, source_dataset, matching_snaps) if source_snaps else None
     print(f"Source Written Data: {source_written}")
-
-    matching_status = determine_matching_snaps(source_snaps, dest_snaps)
-
+    
     if matching_status and source_written == '0':
         print("Replication has no lag.")
         lag = 0
@@ -75,7 +75,7 @@ def determine_most_recent_snap_time(snapshots: list):
 
     return most_recent_time
 
-def determine_matching_snaps(source_snaps: list, dest_snaps: list):
+def determine_matching_snaps(source_snaps: list, dest_snaps: list) -> tuple[bool, set[str]]:
     """
     Docstring for determine_matching_snaps
     
@@ -92,7 +92,7 @@ def determine_matching_snaps(source_snaps: list, dest_snaps: list):
     matching_status = True if source_snap_names == dest_snap_names else False
     # print(f"Matching Snapshots: {matching_status}")
 
-    return matching_status
+    return matching_status, set(source_snap_names) & set(dest_snap_names)
 
 def strip_dataset_from_snapshots(snapshots: list):
     """
@@ -104,20 +104,28 @@ def strip_dataset_from_snapshots(snapshots: list):
     p_compiled = re.compile(r'(.*?)@(.*)')
     return [f'{m.group(2)}' for k in snapshots if (m := p_compiled.match(k))]
 
-def get_written(host: str, dataset: str):
+def get_written(host: str, dataset: str, matching_snaps: set[str]):
     """Get Written Data on Source
+    - get a list of all snaps on the source for the dataset that include creation and written values
+    - import the values into a structure
+    - compare source and destination snaps and eliminate any that have moved to the destination
+    - with the remaining snaps, count up the written values
+    - return the written value
 
     :param source_host: The source host
     :param source_dataset: The source dataset
     :return: Written data between snapshots
     """
-    cmd = f'ssh root@{host} zfs get written -H -o name,value -p {dataset}'
+    cmd = f'ssh root@{host} zfs get written,creation -H -o name,property,value -pr {dataset}'
     print(f"Getting written {cmd}")
     response = execute_command(cmd)
     if response.returncode != 0:
-        print(f"Failed to retrieve written data from {source_host}:{source_dataset}")
+        print(f"Failed to retrieve written data from {host}:{dataset}")
         return None
-    
+
+    print(response.stdout)
+    print(f"Matching Snaps: {matching_snaps}")
+
     written_value = response.stdout.strip().split()[1]
     return written_value
 
