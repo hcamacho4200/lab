@@ -49,6 +49,12 @@ all:
         proxy-01:
           docker: true
         utility-01:
+    zabbix_servers:
+      vars: 
+        ansible_python_interpreter: /usr/bin/python3.11
+      hosts:
+        zabbix-01:
+
 
 
 

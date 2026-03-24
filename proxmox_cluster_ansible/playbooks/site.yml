@@ -12,6 +12,7 @@
     - proxmox_preferred_hosts
     - proxmox_replication
     - proxmox_root_shell
+    - zabbix_agent
     
 - name: Linux Server Processing
   hosts: linux_servers
@@ -20,4 +21,13 @@
   roles:
     - linux_patch
     - linux_standard_tasks
+    - zabbix_agent
+
+- name: Zabbix Server Processing
+  hosts: zabbix_servers
+  become: true
+
+  roles:
+    - zabbix_patch
+
 

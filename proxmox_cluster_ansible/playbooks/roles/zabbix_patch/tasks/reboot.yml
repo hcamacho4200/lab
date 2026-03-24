@@ -1,0 +1,7 @@
+---
+- name: Reboot system
+  reboot:
+    msg: "Reboot initiated by Ansible patch role"
+    reboot_timeout: "{{ patch_reboot_timeout }}"
+    pre_reboot_delay: 5
+    post_reboot_delay: 15

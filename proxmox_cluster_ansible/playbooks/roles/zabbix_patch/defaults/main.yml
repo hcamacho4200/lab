@@ -1,0 +1,4 @@
+---
+patch_reboot: true
+patch_reboot_timeout: 600
+patch_autoremove: true
