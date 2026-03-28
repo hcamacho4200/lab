@@ -43,6 +43,7 @@ all:
       hosts:
         collector:
         db01:
+          zabbix_enable_mysql: true
         docker-03:
           docker: true
         plex-01:

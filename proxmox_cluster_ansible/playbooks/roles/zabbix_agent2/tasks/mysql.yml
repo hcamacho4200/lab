@@ -1,0 +1,13 @@
+- name: Configure MySQL
+  copy:
+    dest: /etc/zabbix/zabbix_agent2.d/mysql.conf
+    owner: root
+    group: root
+    mode: '0755'
+    content: |
+      # This file is maintained by Ansible. Manual changes may be overwritten.
+
+      Plugins.MySQL.User=zbx_monitor
+      Plugins.MySQL.Password=zbx_monitor_4200
+      Plugins.MySQL.Uri=unix:///var/run/mysqld/mysqld.sock
+    

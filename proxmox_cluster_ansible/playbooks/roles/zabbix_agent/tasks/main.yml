@@ -1,11 +1,25 @@
 ---
-- name: Install Zabbix repo package
+- name: Remove Zabbix repo package
   ansible.builtin.apt:
-    deb: https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.0+ubuntu24.04_all.deb
+    name: zabbix-release
+    state: absent
+
+- name: Remove Zabbix repo file
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /etc/apt/sources.list.d/zabbix.list
+    - /etc/apt/sources.list.d/zabbix-tools.list
 
 - name: Update apt cache
   ansible.builtin.apt:
     update_cache: yes
+
+- name: Install Zabbix Repo
+  ansible.builtin.apt:
+    deb: https://repo.zabbix.com/zabbix/7.0/debian/pool/main/z/zabbix-release/zabbix-release_latest_7.0+debian12_all.deb
+    state: present
     
 - name: Install Zabbix Agent
   ansible.builtin.package:
@@ -26,7 +40,7 @@
     line: "ServerActive={{ zabbix_server }}"
     insertafter: EOF
 
-- name: Enable and start QEMU guest agent
+- name: Enable and start Zabbix Agent2
   ansible.builtin.service:
     name: zabbix-agent
     enabled: true

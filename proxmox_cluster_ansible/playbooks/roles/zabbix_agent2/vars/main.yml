@@ -1,0 +1,1 @@
+zabbix_server: "{{ hostvars[groups['zabbix_servers'][0]].inventory_hostname }}"

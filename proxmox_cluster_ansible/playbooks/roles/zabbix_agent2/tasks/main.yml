@@ -1,0 +1,13 @@
+---
+- name: Configure Zabbix Agent2
+  include_tasks: agent2.yml
+
+- name: Configure Zabbix MySQL monitoring
+  include_tasks: mysql.yml
+  when: zabbix_enable_mysql | default(false)
+
+- name: Enable and start Zabbix Agent2
+  ansible.builtin.service:
+    name: zabbix-agent2
+    enabled: true
+    state: restarted

@@ -21,7 +21,7 @@
   roles:
     - linux_patch
     - linux_standard_tasks
-    - zabbix_agent
+    - zabbix_agent2
 
 - name: Zabbix Server Processing
   hosts: zabbix_servers

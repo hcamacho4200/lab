@@ -1,0 +1,32 @@
+---
+- name: Install Zabbix repo package
+  ansible.builtin.apt:
+    deb: https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.0+ubuntu24.04_all.deb
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: yes
+    
+- name: Install Zabbix Agent
+  ansible.builtin.package:
+    name: zabbix-agent
+    state: absent
+
+- name: Install Zabbix Agent2
+  ansible.builtin.package:
+    name: zabbix-agent2
+    state: present
+
+- name: Ensure Server is set (not commented)
+  ansible.builtin.lineinfile:
+    path: /etc/zabbix/zabbix_agent2.conf
+    regexp: '^Server='
+    line: "Server={{ zabbix_server }}"
+    insertafter: EOF
+
+- name: Ensure ServerActive is set (not commented)
+  ansible.builtin.lineinfile:
+    path: /etc/zabbix/zabbix_agent2.conf
+    regexp: '^ServerActive='
+    line: "ServerActive={{ zabbix_server }}"
+    insertafter: EOF
