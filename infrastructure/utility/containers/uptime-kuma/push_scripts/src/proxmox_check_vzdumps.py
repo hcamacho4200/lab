@@ -3,8 +3,8 @@ import os
 import re
 import sys
 
-from src.syncoid_replication_leg import execute_command
-from src.util import kuma_push
+from syncoid_replication_leg import execute_command
+from util import kuma_push
 
 def main(proxmox_host: str, vmids_json: str, kuma_push_url: str):
     """Monitoring the number of snapshots for each VM, and then reporting if there are snaps that are present

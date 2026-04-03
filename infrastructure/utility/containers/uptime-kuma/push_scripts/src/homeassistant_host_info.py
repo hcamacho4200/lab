@@ -2,7 +2,7 @@ import sys
 import subprocess
 import json
 
-from src.util import kuma_push
+from util import kuma_push
 
 
 def main(threshold: int, kuma_push_url: str, ha_host: str = 'homeassistant-01.home'):
