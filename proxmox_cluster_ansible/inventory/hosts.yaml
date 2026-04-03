@@ -46,6 +46,8 @@ all:
           zabbix_enable_mysql: true
         docker-03:
           docker: true
+        local-stack-01:
+          docker: true
         plex-01:
         proxy-01:
           docker: true

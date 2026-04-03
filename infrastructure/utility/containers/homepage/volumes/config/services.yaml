@@ -26,6 +26,9 @@
     - Portainer:
         href: https://utility-01.home:9443
         description: Container management
+    - Proxmox Backup Server:
+        href: https://backup-01.home:8007/
+        description: Backup server appliance
     - Proxmox Production:
         href: https://proxmox-1.home:8006
         description: VM/CT Management

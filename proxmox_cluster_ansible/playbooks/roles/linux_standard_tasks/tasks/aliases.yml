@@ -1,0 +1,11 @@
+- name: Configure Ubuntu Shell
+  copy:
+    dest: /home/ubuntu/.bash_aliases
+    owner: ubuntu
+    group: ubuntu
+    mode: '0755'
+    content: |
+      # This file is maintained by Ansible. Manual changes may be overwritten.
+      SYSTEMD_EDITOR=vi
+      alias gl="git log --oneline --graph --all"
+      

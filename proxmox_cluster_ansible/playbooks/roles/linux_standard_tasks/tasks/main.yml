@@ -10,3 +10,12 @@
 
 - name: SSHD Configuration
   ansible.builtin.import_tasks: sshd.yml
+
+- name: Install Custom Aliases and Exports
+  ansible.builtin.import_tasks: aliases.yml
+
+- name: Install net-tools
+  ansible.builtin.apt:
+    name: net-tools
+    state: present
+    update_cache: true
