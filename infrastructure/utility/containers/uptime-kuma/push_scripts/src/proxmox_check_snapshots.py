@@ -3,7 +3,7 @@ import os
 import sys
 
 from proxmoxer import ProxmoxAPI
-from util import kuma_push
+from src.util import kuma_push
 
 def main(proxmox_host: str, kuma_push_url: str):
     """Monitoring the number of snapshots for each VM, and then reporting if there are snaps that are present

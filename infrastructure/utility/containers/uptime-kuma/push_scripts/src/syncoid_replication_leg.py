@@ -202,6 +202,6 @@ def execute_command(cmd: str):
 
 
 if __name__ == "__main__":
-    from syncoid_replication_leg import main
+    from src.syncoid_replication_leg import main
 
     main()
