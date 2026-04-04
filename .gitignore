@@ -29,3 +29,5 @@ infrastructure/utility/containers/beszel/beszel_data/
 infrastructure/utility/containers/pihole/docker-compose.yaml
 infrastructure/utility/containers/beszel-agent/docker-compose.yml
 infrastructure/utility/containers/beszel-agent/beszel_agent_data/fingerprint
+infrastructure/utility/containers/uptime-kuma/push_scripts/src/proxmox_check_vzdumps.py
+infrastructure/utility/containers/uptime-kuma/push_scripts/.coverage
