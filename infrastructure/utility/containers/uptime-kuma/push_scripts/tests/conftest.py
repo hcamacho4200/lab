@@ -92,3 +92,36 @@ def pbs_sample_data_correct():
         "/mnt/datastore/backup_pool/vm/5010/2026-04-03T05:00:20Z/client.log.blob",
     ]
 
+@pytest.fixture
+def pbs_sample_data_extra():
+    return [
+        "/mnt/datastore/backup_pool/vm/100/2026-04-03T06:00:06Z/client.log.blob",
+        "/mnt/datastore/backup_pool/vm/101/2026-04-03T10:00:00Z/client.log.blob",
+        "/mnt/datastore/backup_pool/vm/1010/2026-04-03T05:00:06Z/client.log.blob",
+        "/mnt/datastore/backup_pool/vm/103/2026-04-03T10:00:02Z/client.log.blob",
+        "/mnt/datastore/backup_pool/vm/104/2026-04-03T05:00:02Z/client.log.blob",
+        "/mnt/datastore/backup_pool/vm/105/2026-04-03T10:00:07Z/client.log.blob",
+        "/mnt/datastore/backup_pool/vm/5010/2026-04-03T05:00:20Z/client.log.blob",
+        "/mnt/datastore/backup_pool/vm/999/2026-04-03T05:00:20Z/client.log.blob",
+    ]
+
+@pytest.fixture
+def pbs_sample_data_missing_one():
+    return [
+        "/mnt/datastore/backup_pool/vm/101/2026-04-03T10:00:00Z/client.log.blob",
+        "/mnt/datastore/backup_pool/vm/1010/2026-04-03T05:00:06Z/client.log.blob",
+        "/mnt/datastore/backup_pool/vm/103/2026-04-03T10:00:02Z/client.log.blob",
+        "/mnt/datastore/backup_pool/vm/104/2026-04-03T05:00:02Z/client.log.blob",
+        "/mnt/datastore/backup_pool/vm/105/2026-04-03T10:00:07Z/client.log.blob",
+        "/mnt/datastore/backup_pool/vm/5010/2026-04-03T05:00:20Z/client.log.blob",
+    ]
+
+@pytest.fixture
+def pbs_sample_data_missing_two():
+    return [
+        "/mnt/datastore/backup_pool/vm/1010/2026-04-03T05:00:06Z/client.log.blob",
+        "/mnt/datastore/backup_pool/vm/103/2026-04-03T10:00:02Z/client.log.blob",
+        "/mnt/datastore/backup_pool/vm/104/2026-04-03T05:00:02Z/client.log.blob",
+        "/mnt/datastore/backup_pool/vm/105/2026-04-03T10:00:07Z/client.log.blob",
+        "/mnt/datastore/backup_pool/vm/5010/2026-04-03T05:00:20Z/client.log.blob",
+    ]

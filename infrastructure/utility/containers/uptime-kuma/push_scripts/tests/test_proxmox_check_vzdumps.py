@@ -11,6 +11,9 @@ from proxmox_check_vzdumps import HostType
         ("pve_sample_data_missing_one", "down", "Missing [101] backups ", "/data_root/PROXMOX/dump", HostType.PVE,),
         ("pve_sample_data_missing_two", "down", "Missing [101, 103] backups ", "/data_root/PROXMOX/dump", HostType.PVE,),
         ("pbs_sample_data_correct", "up", "", "/mnt/datastore/backup_pool/vm", HostType.PBS,),
+        ("pbs_sample_data_extra", "down", "Non monitored {999: 1}", "/mnt/datastore/backup_pool/vm", HostType.PBS,),
+        ("pbs_sample_data_missing_one", "down", "Missing [100] backups ", "/mnt/datastore/backup_pool/vm", HostType.PBS,),
+        ("pbs_sample_data_missing_two", "down", "Missing [100, 101] backups ", "/mnt/datastore/backup_pool/vm", HostType.PBS,),
     ]
 )
 @pytest.mark.focus
